@@ -32,8 +32,9 @@ DrawPoint.stopDrawingAndRemove = function(state) {
 };
 
 DrawPoint.onTap = DrawPoint.onClick = function(state, e) {
+  const [lat, lng] = e.latLng;
   this.updateUIClasses({ mouse: Constants.cursors.MOVE });
-  state.point.updateCoordinate('', e.lngLat.lng, e.lngLat.lat);
+  state.point.updateCoordinate('', lng, lat);
   this.map.fire(Constants.events.CREATE, {
     features: [state.point.toGeoJSON()]
   });

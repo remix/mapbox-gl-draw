@@ -74,12 +74,13 @@ DrawLineString.clickAnywhere = function(state, e) {
     return this.changeMode(Constants.modes.SIMPLE_SELECT, { featureIds: [state.line.id] });
   }
   this.updateUIClasses({ mouse: Constants.cursors.ADD });
-  state.line.updateCoordinate(state.currentVertexPosition, e.lngLat.lng, e.lngLat.lat);
+  const [lat, lng] = e.latLng;
+  state.line.updateCoordinate(state.currentVertexPosition, lng, lat);
   if (state.direction === 'forward') {
     state.currentVertexPosition++;
-    state.line.updateCoordinate(state.currentVertexPosition, e.lngLat.lng, e.lngLat.lat);
+    state.line.updateCoordinate(state.currentVertexPosition, lng, lat);
   } else {
-    state.line.addCoordinate(0, e.lngLat.lng, e.lngLat.lat);
+    state.line.addCoordinate(0, lng, lat);
   }
 };
 
@@ -88,7 +89,8 @@ DrawLineString.clickOnVertex = function(state) {
 };
 
 DrawLineString.onMouseMove = function(state, e) {
-  state.line.updateCoordinate(state.currentVertexPosition, e.lngLat.lng, e.lngLat.lat);
+  const [lat, lng] = e.latLng;
+  state.line.updateCoordinate(state.currentVertexPosition, lng, lat);
   if (CommonSelectors.isVertex(e)) {
     this.updateUIClasses({ mouse: Constants.cursors.POINTER });
   }
