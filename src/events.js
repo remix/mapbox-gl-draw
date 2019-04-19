@@ -227,8 +227,6 @@ module.exports = function(ctx) {
       eventProxy.on('touchstart', events.touchstart);
       eventProxy.on('touchend', events.touchend);
 
-      document.addEventListener('mouseout', events.mouseout);
-
       if (ctx.options.keybindings) {
         document.addEventListener('keydown', events.keydown);
         document.addEventListener('keyup', events.keyup);
@@ -244,8 +242,6 @@ module.exports = function(ctx) {
       eventProxy.off('touchmove', events.touchmove);
       eventProxy.off('touchstart', events.touchstart);
       eventProxy.off('touchend', events.touchend);
-
-      document.removeEventListener('mouseout', events.mouseout);
 
       if (ctx.options.keybindings) {
         document.removeEventListener('keydown', events.keydown);
