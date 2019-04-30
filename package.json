@@ -1,5 +1,5 @@
 {
-  "name": "@mapbox/mapbox-gl-draw",
+  "name": "@remix/mapbox-gl-draw",
   "version": "1.1.1",
   "description": "A drawing component for Mapbox GL JS",
   "homepage": "https://github.com/mapbox/mapbox-gl-draw",
@@ -45,7 +45,7 @@
     "instrument": false
   },
   "devDependencies": {
-    "@babel/core": "^7.1.2",
+    "@babel/core": "^7.4.4",
     "@babel/preset-env": "^7.1.0",
     "@babel/register": "^7.0.0",
     "@mapbox/mapbox-gl-draw-static-mode": "^1.0.1",
@@ -53,7 +53,7 @@
     "babel-eslint": "^8.0.3",
     "babel-plugin-istanbul": "^5.1.0",
     "babelify": "^10.0.0",
-    "browserify": "^16.1.1",
+    "browserify": "^16.2.3",
     "browserify-middleware": "^8.1.0",
     "envify": "^4.0.0",
     "eslint": "^4.2.0",
