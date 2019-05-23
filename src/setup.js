@@ -12,7 +12,7 @@ module.exports = function(ctx) {
   const setup = {
     onRemove: function() {
       // Stop connect attempt in the event that control is removed before map is loaded
-      ctx.map.off('load', setup.connect);
+      if (ctx.map) ctx.map.off('load', setup.connect);
       clearInterval(mapLoadedInterval);
 
       setup.removeLayers();
