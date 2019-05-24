@@ -29,7 +29,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/mapbox/mapbox-gl-draw.git"
+    "url": "git://github.com/remix/mapbox-gl-draw.git"
   },
   "keywords": [
     "webgl",
@@ -38,7 +38,7 @@
     "drawing"
   ],
   "bugs": {
-    "url": "https://github.com/mapbox/mapbox-gl-draw/issues"
+    "url": "https://github.com/remix/mapbox-gl-draw/issues"
   },
   "nyc": {
     "sourceMap": false,
@@ -71,7 +71,7 @@
     "unassertify": "^2.0.3"
   },
   "peerDependencies": {
-    "mapbox-gl": ">=0.27.0 <=0.51.0"
+    "mapbox-gl": ">=0.27.0 <2.0.0"
   },
   "dependencies": {
     "@mapbox/geojson-area": "^0.2.1",
