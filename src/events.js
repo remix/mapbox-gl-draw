@@ -125,9 +125,29 @@ module.exports = function(ctx) {
   // 8 - Backspace
   // 46 - Delete
   const isKeyModeValid = (code) => !(code === 8 || code === 46 || (code >= 48 && code <= 57));
+  const getActiveElement = () => {
+    try {
+      return document.activeElement;
+    } catch (_) {
+      // Return the body if IE/Edge thows due to a bug with iframes.
+      // https://developer.microsoft.com/en-us/microsoft-edge/platform/issues/12733599/
+      return document.body;
+    }
+  };
+  const isTextBox = (element) => {
+    const tagName = element.tagName.toLowerCase();
+    return tagName === 'textarea' || tagName === 'input';
+  };
+
 
   events.keydown = function(event) {
     if ((event.keyCode === 8 || event.keyCode === 46) && ctx.options.controls.trash) {
+      const activeElement = getActiveElement();
+      if (!isTextBox(activeElement)) {
+        // prevent back-navigation behavior in Firefox
+        event.preventDefault();
+      }
+
       currentMode.trash();
     } else if (isKeyModeValid(event.keyCode)) {
       currentMode.keydown(event);
