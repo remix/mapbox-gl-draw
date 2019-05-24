@@ -135,6 +135,7 @@ module.exports = function(ctx) {
     }
   };
   const isTextBox = (element) => {
+    if (!element) return false;
     const tagName = element.tagName.toLowerCase();
     return tagName === 'textarea' || tagName === 'input';
   };
