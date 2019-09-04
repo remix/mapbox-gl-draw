@@ -33,8 +33,12 @@ module.exports = function(ctx) {
   function updateMapClasses() {
     if (!ctx.container) return;
 
+    // To make this work in a react-map-gl context, we need to set these
+    // classes on the parent of the map container instead of the map container
+    // itself. See corresponding changes in the stylesheet.
+    const container = ctx.container.parentNode;
     const classesToRemove = [];
-    const classesToAdd = [];
+    const classesToAdd = ['mapbox-gl-draw-container'];
 
     classTypes.forEach((type) => {
       if (nextMapClasses[type] === currentMapClasses[type]) return;
@@ -46,11 +50,11 @@ module.exports = function(ctx) {
     });
 
     if (classesToRemove.length > 0) {
-      ctx.container.classList.remove.apply(ctx.container.classList, classesToRemove);
+      container.classList.remove.apply(container.classList, classesToRemove);
     }
 
     if (classesToAdd.length > 0) {
-      ctx.container.classList.add.apply(ctx.container.classList, classesToAdd);
+      container.classList.add.apply(container.classList, classesToAdd);
     }
 
     currentMapClasses = xtend(currentMapClasses, nextMapClasses);
