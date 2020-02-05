@@ -80,7 +80,9 @@ module.exports = function render() {
   }
 
   cleanup();
-  store.ctx.map.fire(Constants.events.RENDER, {});
+  store.ctx.map.fire(Constants.events.RENDER, {
+    getAllFeatures: () => store.getAll()
+  });
 
   function cleanup() {
     store.isDirty = false;
