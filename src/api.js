@@ -192,5 +192,11 @@ module.exports = function(ctx, api) {
     return api;
   };
 
+  // We can't just call dragPan on the map because react component
+  // implements its own panning. So notify caller to do something.
+  api.setOnAllowDragPanChanged = function(callback) {
+      ctx.externalHooks.onAllowDragPanChanged = callback;
+  };
+
   return api;
 };

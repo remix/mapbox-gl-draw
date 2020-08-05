@@ -57,16 +57,13 @@ module.exports = function(ctx) {
       ctx.ui = ui(ctx);
       ctx.container = map.getContainer();
       ctx.store = new Store(ctx);
+      ctx.externalHooks = {};
 
 
       controlContainer = ctx.ui.addButtons();
 
       if (ctx.options.boxSelect) {
         map.boxZoom.disable();
-        // Need to toggle dragPan on and off or else first
-        // dragPan disable attempt in simple_select doesn't work
-        map.dragPan.disable();
-        map.dragPan.enable();
       }
 
       if (map.loaded()) {
@@ -121,7 +118,7 @@ module.exports = function(ctx) {
       if (ctx.map.getSource(Constants.sources.HOT)) {
         ctx.map.removeSource(Constants.sources.HOT);
       }
-    }
+    },
   };
 
   ctx.setup = setup;
