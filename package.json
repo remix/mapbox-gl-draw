@@ -1,6 +1,6 @@
 {
   "name": "@remix/mapbox-gl-draw",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "description": "A drawing component for Mapbox GL JS",
   "homepage": "https://github.com/remix/mapbox-gl-draw",
   "author": "mapbox",
@@ -75,12 +75,12 @@
   },
   "dependencies": {
     "@mapbox/geojson-area": "^0.2.1",
+    "@mapbox/geojson-extent": "^0.3.2",
     "@mapbox/geojson-normalize": "0.0.1",
     "@mapbox/geojsonhint": "^2.0.0",
-    "@mapbox/geojson-extent": "^0.3.2",
+    "@mapbox/point-geometry": "0.1.0",
     "hat": "0.0.3",
     "lodash.isequal": "^4.2.0",
-    "@mapbox/point-geometry": "0.1.0",
     "xtend": "^4.0.1"
   }
 }
