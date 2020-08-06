@@ -29,14 +29,18 @@ DirectSelect.fireActionable = function(state) {
 };
 
 DirectSelect.startDragging = function(state, e) {
-  this.map.dragPan.disable();
+  if (this._ctx.externalHooks.onAllowDragPanChanged) {
+    this._ctx.externalHooks.onAllowDragPanChanged(false);
+  }
   state.canDragMove = true;
   const [lat, lng] = e.latLng;
   state.dragMoveLocation = {lng, lat};
 };
 
 DirectSelect.stopDragging = function(state) {
-  this.map.dragPan.enable();
+  if (this._ctx.externalHooks.onAllowDragPanChanged) {
+    this._ctx.externalHooks.onAllowDragPanChanged(true);
+  }
   state.dragMoving = false;
   state.canDragMove = false;
   state.dragMoveLocation = null;

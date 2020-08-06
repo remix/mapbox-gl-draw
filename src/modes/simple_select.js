@@ -87,7 +87,9 @@ SimpleSelect.stopExtendedInteractions = function(state) {
     state.boxSelectElement = null;
   }
 
-  this.map.dragPan.enable();
+  if (this._ctx.externalHooks.onAllowDragPanChanged) {
+    this._ctx.externalHooks.onAllowDragPanChanged(true);
+  }
 
   state.boxSelecting = false;
   state.canBoxSelect = false;
@@ -147,7 +149,9 @@ SimpleSelect.startOnActiveFeature = function(state, e) {
   this.stopExtendedInteractions(state);
 
   // Disable map.dragPan immediately so it can't start
-  this.map.dragPan.disable();
+  if (this._ctx.externalHooks.onAllowDragPanChanged) {
+    this._ctx.externalHooks.onAllowDragPanChanged(false);
+  }
 
   // Re-render it and enable drag move
   this.doRender(e.featureTarget.properties.id);
@@ -208,7 +212,9 @@ SimpleSelect.onMouseDown = function(state, e) {
 
 SimpleSelect.startBoxSelect = function(state, e) {
   this.stopExtendedInteractions(state);
-  this.map.dragPan.disable();
+  if (this._ctx.externalHooks.onAllowDragPanChanged) {
+    this._ctx.externalHooks.onAllowDragPanChanged(false);
+  }
   // Enable box select
   state.boxSelectStartLocation = mouseEventPoint(e.srcEvent, this.map.getContainer());
   state.canBoxSelect = true;
