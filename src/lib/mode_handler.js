@@ -59,6 +59,10 @@ const ModeHandler = function(mode, DrawContext) {
     trash: function() {
       if (mode.trash) {
         mode.trash();
+        // The trashing could have caused the control to unload
+        if (!DrawContext.store) {
+          return;
+        }
         DrawContext.store.render();
       }
     },

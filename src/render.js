@@ -2,8 +2,12 @@ const Constants = require('./constants');
 
 module.exports = function render() {
   const store = this;
-  const mapExists = store.ctx.map && store.ctx.map.getSource(Constants.sources.HOT) !== undefined;
-  if (!mapExists) return cleanup();
+
+  function mapExists() {
+    return store.ctx.map && store.ctx.map.getSource(Constants.sources.HOT) !== undefined;
+  }
+
+  if (!mapExists()) return cleanup();
 
   const mode = store.ctx.events.currentModeName();
 
@@ -77,6 +81,9 @@ module.exports = function render() {
     store.ctx.map.fire(Constants.events.DELETE, {
       features: geojsonToEmit
     });
+
+    // Firing the delete event could have caused the control to be unloaded
+    if (!mapExists()) return cleanup();
   }
 
   cleanup();
